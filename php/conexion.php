@@ -26,5 +26,6 @@
 	else
 	{
 		$user = $_SESSION['_user'];
+
 	}
  ?>
