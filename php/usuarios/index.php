@@ -79,10 +79,8 @@
 					<thead>
 						<tr>
 							<th>Nombre de usuario</th>
-							<th>Rol</th>
-							<th>Email</th>
-							<th>Telefono</th>
-							<th></th>
+							<th>Nombre completo</th>
+							<th>Acciones</th>
 							<th></th>
 						</tr>
 					</thead>

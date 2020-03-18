@@ -2,28 +2,30 @@
 	
 	require '../conexion.php';
 	
-	$nombre = $_POST['nombre'];
-	$email = $_POST['email'];
-	$telefono = $_POST['telefono'];
-	$estado_civil = $_POST['estado_civil'];
-	$hijos = isset($_POST['hijo']) ? $_POST['hijos'] : 0;
-	$intereses = isset($_POST['intereses']) ? $_POST['intereses'] : null;
-	$arrayIntereses = null;
-	$num_array = count($intereses);
-	$contador = 0;
+	$usuario = $_POST['nombre_usuario'];
+	$nombre = $_POST['nombre_completo'];
+	$clave = $_POST['clave'];
+	$tipo_de_usuario = $_POST['rol'];
+	//$estado_civil = $_POST['estado_civil'];
+	//$hijos = isset($_POST['hijo']) ? $_POST['hijos'] : 0;
+	//$intereses = isset($_POST['intereses']) ? $_POST['intereses'] : null;
+	//$arrayIntereses = null;
+	//$num_array = count($intereses);
+	//$contador = 0;
+	//
+	//if($num_array>0){
+	//	foreach ($intereses as $key => $value) {
+	//		if ($contador != $num_array-1)
+	//		$arrayIntereses .= $value.' ';
+	//		else
+	//		$arrayIntereses .= $value;
+	//		$contador++;
+	//	}
+	//}
 	
-	if($num_array>0){
-		foreach ($intereses as $key => $value) {
-			if ($contador != $num_array-1)
-			$arrayIntereses .= $value.' ';
-			else
-			$arrayIntereses .= $value;
-			$contador++;
-		}
-	}
-	
-	$sql = "INSERT INTO personas (nombre, correo, telefono, estado_civil, hijos, intereses) VALUES ('$nombre', '$email', '$telefono', '$estado_civil', '$hijos', '$arrayIntereses')";
+	$sql="INSERT INTO `4g`.`adm_usuarios` (`usu_id`, `usu_nombre`, `usu_password`, `usu_rol`, `usu_estado`) VALUES ('$usuario', '$nombre', '$clave', '$tipo_de_usuario', 'A');";
 	$resultado = $mysqli->query($sql);
+
 	
 ?>
 

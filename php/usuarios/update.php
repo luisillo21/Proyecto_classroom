@@ -3,29 +3,12 @@
 	require '../conexion.php';
 	
 	$id = $_POST['id'];
-	$nombre = $_POST['nombre'];
-	$email = $_POST['email'];
-	$telefono = $_POST['telefono'];
-	$estado_civil = $_POST['estado_civil'];
-	$hijos = isset($_POST['hijos']) ? $_POST['hijos'] : 0;
-	$intereses = isset($_POST['intereses']) ? $_POST['intereses'] : null;
+	$nombre = $_POST['nombre_usuario'];
+	$nombre_persona = $_POST['nombre_completo'];
+	$rol = $_POST['rol'];
 	
-	$arrayIntereses = null;
 	
-	$num_array = count($intereses);
-	$contador = 0;
-	
-	if($num_array>0){
-		foreach ($intereses as $key => $value) {
-			if ($contador != $num_array-1)
-			$arrayIntereses .= $value.' ';
-			else
-			$arrayIntereses .= $value;
-			$contador++;
-		}
-	}
-	
-	$sql = "UPDATE personas SET nombre='$nombre', correo='$email', telefono='$telefono', estado_civil='$estado_civil', hijos='$hijos', intereses='$arrayIntereses' WHERE id = '$id'";
+	$sql = "UPDATE adm_usuarios SET usu_id='$nombre', usu_nombre='$nombre_persona', usu_rol='$rol' WHERE usu_id = '$id'";
 	$resultado = $mysqli->query($sql);
 	
 ?>

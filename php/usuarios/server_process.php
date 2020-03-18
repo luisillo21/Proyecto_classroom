@@ -8,13 +8,13 @@
 	require '../conexion.php';
 	
 	/* Nombre de La Tabla */
-	$sTabla = "personas";
+	$sTabla = "adm_usuarios";
 	
 	/* Array que contiene los nombres de las columnas de la tabla*/
-	$aColumnas = array( 'id', 'nombre', 'correo', 'telefono' );
+	$aColumnas = array( 'usu_id', 'usu_nombre' );
 	
 	/* columna indexada */
-	$sIndexColumn = "id";
+	$sIndexColumn = "usu_id";
 	
 	// Paginacion
 	$sLimit = "";
@@ -129,8 +129,8 @@
 			}
 		}
 		
-		$row[] = "<td><a href='modificar.php?id=".$aRow['id']."'><span class='glyphicon glyphicon-pencil'></span></a></td>";
-		$row[] = "<td><a href='#' data-href='eliminar.php?id=".$aRow['id']."' data-toggle='modal' data-target='#confirm-delete'><span class='glyphicon glyphicon-trash'></span></a></td>";
+		$row[] = "<td><a href='modificar.php?id=".$aRow['usu_id']."'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+		$row[] = "<td><a href='#' data-href='eliminar.php?id=".$aRow['usu_id']."' data-toggle='modal' data-target='#confirm-delete'><span class='glyphicon glyphicon-trash'></span></a></td>";
 		
 		$output['aaData'][] = $row;
 	}
