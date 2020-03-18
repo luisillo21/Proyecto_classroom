@@ -6,7 +6,7 @@
 	}
 	else
 	{
-		$GLOBALS['program_id'] = 101; // Personas
+		$GLOBALS['program_id'] = 100; // Personas
 		include("../conexion.php");
 		include("../valida_permisos.php");	
 		if(valida_permisos($conexion,"E")!=1)
@@ -16,7 +16,7 @@
 		else
 		{
 			$id = $_GET['id'];			
-			$sql = "DELETE FROM personas WHERE id = '$id'";
+			$sql = "UPDATE adm_usuarios SET usu_estado = 'I' WHERE usu_id = '$id'";
 			$resultado = $mysqli->query($sql);
 		}
 	}

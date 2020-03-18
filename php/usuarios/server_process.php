@@ -54,7 +54,7 @@
 			$sWhere .= $aColumnas[$i]." LIKE '%".$_GET['sSearch']."%' OR ";
 		}
 		$sWhere = substr_replace( $sWhere, "", -3 );
-		$sWhere .= ')';
+		$sWhere .= 'AND usu_estado = A)';
 	}
 	
 	// Filtrado de columna individual 
