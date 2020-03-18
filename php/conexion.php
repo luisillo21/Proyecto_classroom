@@ -2,7 +2,7 @@
 	class conectar{
 		private $servidor="localhost";
 		private $usuario="root";
-		private $password="root";
+		private $password="root12345";
 		private $bd="4g";
 
 		public function conexion(){
@@ -18,7 +18,7 @@
 	$conexion=$mysqli->conexion();
 
 	// Datablade
-	$mysqli = new mysqli('localhost', 'root', 'root', '4g');
+	$mysqli = new mysqli('localhost', 'root', 'root12345', '4g');
 	if($mysqli->connect_error)
 	{
 		die('Error en la conexion' . $mysqli->connect_error);
