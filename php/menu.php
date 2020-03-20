@@ -66,10 +66,26 @@
                             AND pro_id = per_programa
                             AND rol_id = usu_rol
                             AND usu_id  = '$user'
+                            AND per_rol = usu_rol
                             AND rol_estado = 'A'
                             AND sis_estado = 'A'
                             AND sis_id = $id_system
                         ");  
+
+    /*
+      SELECT * FROM adm_menus, adm_programas, adm_permisos, adm_usuarios, adm_roles, adm_sistemas
+                            WHERE adm_padre = $menuPadre
+                            AND pro_id = adm_programa
+                            AND adm_tipo = 'H'
+                            AND pro_id = per_programa
+                            AND rol_id = usu_rol
+                            AND per_rol = usu_rol
+                            AND usu_id  = $user
+                            AND rol_estado = 'A'
+                            AND sus_id = $id_system
+                            AND sis_estado = 'A'
+                            GROUP BY pro_descripcion
+    */
 
     while($data2 = mysqli_fetch_assoc($result2))
     {
@@ -122,7 +138,7 @@
 
   <body class='sidebar-mini skin-blue' data-gr-c-s-loaded='true' style='height: auto; min-height: 100%;'>
     <div class='wrapper'>
-      <header class='main-header'>
+      <header class='main-header bg-dark'>
         <a href='#' class='logo'>
           <span class='logo-mini'><b>$xx_nombre_corto </b></span>
           <span class='logo-lg'>  <b>$xx_nombre_corto </b></span>
@@ -130,9 +146,9 @@
 
         <a href='#' class='sidebar-toggle' data-toggle='offcanvas' role='button' title='Menu'>  </a>
         
-        <nav class='navbar navbar-static-top'>
-          <div class='navbar-custom-menu'>
-            <ul class='nav navbar-nav'>
+        <nav class='navbar navbar-static-top bg-dark'>
+          <div class='navbar-custom-menu bg-dark'>
+            <ul class='nav navbar-nav bg-dark'>
               
               <li class='dropdown user user-menu'>
                 <a href='#' class='dropdown-toggle' data-toggle='dropdown'>

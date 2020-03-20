@@ -1,10 +1,8 @@
 :root{
-	--color_fondo_cab: blue;
+	--color_fondo_cab: #343A40;
 	--color_texto_cab: white;
-
     --color_fondo_grid: blue;
     --color_texto_grid: white;
-
 	--color_background_body: white;
 }
 

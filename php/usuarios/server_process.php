@@ -1,4 +1,4 @@
-<?php
+ <?php
 	/*
 		* Script:    Tablas de multiples datos del lado del servidor para PHP y MySQL
 		* Copyright: 2016 - Marko Robles

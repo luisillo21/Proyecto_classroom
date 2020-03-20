@@ -18,7 +18,7 @@
 						<link rel='stylesheet' href='./js/alertify/css/alertify.min.css' />
 						<link rel='stylesheet' href='./bootstrap/css/bootstrap.min.css'>
 					</head>
-					<body>
+					<body >
 					  	<div class='container'>
 							<center> 
 								<p> </p>

@@ -1,128 +1,96 @@
 <?php
-	SESSION_START();
-	if(!isset($_SESSION['_user']))
-	{
-		header("location:../../index.php");
-	}
-	else
-	{
-		$GLOBALS['program_id'] = 101; // Personas
-		include("../conexion.php");
-		include("../valida_permisos.php");	
-
-		if(valida_permisos($conexion,"C")!=1)
-		{
-			header('Location: ../mensaje.php?mensaje=Función No Permitida a Usuario&programa=menu.php&tipo=danger');
-		}
-	}
+  SESSION_START();
+  if(!isset($_SESSION['_user']))
+  {
+    header("location:../../index.php");
+  }
+  else
+  {
+    $GLOBALS['program_id'] = 201; // aula virtual
+    include("../conexion.php");
+    include("../valida_permisos.php");  
+    if(valida_permisos($conexion,"A")!=1)
+    {
+     header('Location: ../mensaje.php?mensaje=Función No Permitida a Usuario&programa=../php/personas/index.php&tipo=danger');
+    }
+  }
 ?>
-<html lang="es">
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/bootstrap-theme.css" rel="stylesheet">
-		<link href="css/jquery.dataTables.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/main.css"> 
-		<script src="js/jquery-3.1.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>	
-		<script src="js/jquery.dataTables.min.js"></script>
-		<script src="js/main.js"></script>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Bienvenidos</title>
+    <!-- BOOTSTRAP 4  -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+    <style type="text/css">
+      
+      .posicion{
+          margin-left: 62%;
+      }
 
-		<script>
-			$(document).ready(function(){
-				$('#mitabla').DataTable({
-					"order": [[1, "asc"]],
-					"language":{
-					"lengthMenu": "Mostrar _MENU_ registros por pagina",
-					"info": "Mostrando pagina _PAGE_ de _PAGES_",
-						"infoEmpty": "No hay registros disponibles",
-						"infoFiltered": "(filtrada de _MAX_ registros)",
-						"loadingRecords": "Cargando...",
-						"processing":     "Procesando...",
-						"search": "Buscar:",
-						"zeroRecords":    "No se encontraron registros coincidentes",
-						"paginate": {
-							"next":       "Siguiente",
-							"previous":   "Anterior"
-						},					
-					},
-					"bProcessing": true,
-					"bServerSide": true,
-					"sAjaxSource": "server_process.php"
-				});	
-			});
-			
-		</script>
-		
-	</head>
-	
-	<header>
-		<div class="row">
-			<h2 style="text-align:center"><?php echo $GLOBALS['program_name']; ?></h2>
-		</div>
-	</header>
+      .boton{
 
-	<body>
-		
-		<div class="container">
-			<br>	
-			<div class="row">
-				<a href="../menu.php" class="btn btn-success">Regresar</a>
-				<a href="nuevo.php" class="btn btn-primary">Nuevo Registro</a>
-				<a href="listado_xls.php" class="btn btn-warning">Excel</a>
-				<a href="listado_pdf.php" target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=600'); return false;" class="btn btn-danger">Pdf</a>
-			</div>
-			<br>
+        margin-left: 10px;
+        margin-right: 10px; 
+      }
 
-			<div class="row table-responsive">
-				<table class="display" id="mitabla">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Nombre</th>
-							<th>Email</th>
-							<th>Telefono</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						
-					</tbody>
-				</table>
-			</div>
-		</div>
-		
-		<!-- Modal -->
-		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">Eliminar Registro</h4>
-					</div>
-					
-					<div class="modal-body">
-						¿Desea eliminar este registro?
-					</div>
-					
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<a class="btn btn-danger btn-ok">Delete</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<script>
-			$('#confirm-delete').on('show.bs.modal', function(e) {
-				$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-				
-				$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
-			});
-		</script>	
-		
-	</body>
-</html>	
+
+
+    </style>
+  </head>
+  <body>
+
+    <!-- NAVIGATION  -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Aula virtual</a>
+            <div class="posicion">
+            <a href="crear_classroom.php"class="btn btn-success boton" name="">Crear Classroom</a>
+            <a href="../menu.php" class="btn btn-danger boton" name="">Volver a la pantalla principal</a>
+            </div>
+      </div>
+    </nav>
+
+ <div class="row py-4 p-2">
+
+  <?php 
+  if (!$conexion) {
+    echo "Error" . mysqli_error();
+    exit();
+  }
+  $consulta = "SELECT * FROM cls_classroom where estado = 'A'";
+
+  if ($result= mysqli_query($conexion,$consulta)) {
+    while ($data = mysqli_fetch_assoc($result)) { 
+        echo '<div class="col-sm-3">';
+        echo '<div class="card shadow-lg p-3 mb-5 rounded bg-dark">';
+        echo '<div class="card-head py-4" style="background-image: url(../../imagenes/2.jpg);">';
+        echo "<h4 class='card-title text-center bold text-light bold'><strong>". $data["nombre"]. "</strong></h4>";
+        echo '</div>';
+        echo '<div class="card-body" >';
+        echo '<p class="card-text text-light h5 text-center">'. $data["descripcion"]  .'</p>';
+        echo '<hr style="background-color:white;" />';
+        echo '<p class="card-text text-light h5 text-center">Autor: '. $data["autor"]  .'</p>';
+        echo '<p class="card-text text-light h5 text-center">Fecha: '. $data["fecha_creacion"]  .'</p>';
+        echo '<a href="post_clasroom.php" class="btn btn-primary btn-block bg-success">Entrar aula virtual</a> </div>';
+        echo '</div>';
+        echo '</div>';
+     } 
+    }
+ ?>
+
+
+  </div>
+
+<div class="modal fade" id="mostrar_modal" role="dialog">
+
+
+</div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <!-- Frontend Logic -->
+    <script src="app.js"></script>
+  </body>
+
+</html>

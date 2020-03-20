@@ -31,9 +31,9 @@
 				}
 				else
 				{
-					$_SESSION["_user"]		= $fila["usu_id"];
-					$_SESSION["_rol"]		= $fila["usu_rol"];
-					$_SESSION["_system"]	= '1';
+					$_SESSION["_user"]	= $fila["usu_id"];
+					$_SESSION["_rol"]	= $fila["usu_rol"];
+					$_SESSION["_system"]= '1';
 
 					echo '<script>location.href = "menu.php"</script>';
 				}
